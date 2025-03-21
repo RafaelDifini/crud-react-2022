@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import api from '../../services/api.ts';
 
 export const Editar = () => {
+    console.log('entrou aqui');
     let navigate = useNavigate();
     const [titulo, setTitulo] = useState("");
     const [mensagem, setMensagem] = useState("");
@@ -12,7 +13,7 @@ export const Editar = () => {
     useEffect(() => {
 
         const param = {
-            "id" : id,
+            "id": id,
             "titulo": titulo,
             "ativo": true,
             "dataCadastro": "2025-03-18T19:37:50.121Z",
@@ -20,11 +21,18 @@ export const Editar = () => {
             "userId": "f9303fde-edac-4fd3-848a-5232e0b55aa4"
         };
 
-        api.post("/GetEntityById", param).then(({ data }) => {
-            setMensagem(data);
-            setTitulo(data.titulo);
-        })
-    }, [id])
+        api.post("/GetEntityById", param)
+            .then(({ data }) => {
+                console.log("API Response:", data); 
+                if (data) {
+                    setMensagem(data);
+                    setTitulo(data.titulo || ""); 
+                }
+            })
+            .catch(error => {
+                console.error("Erro na API:", error); 
+            });
+    }, [id]);
 
     const handleSubmit = async (arg) => {
         arg.preventDefault();

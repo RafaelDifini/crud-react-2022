@@ -39,7 +39,8 @@
 .btn-voltar,
 .btn-editar,
 .btn-excluir ,
-.btn-deletar{
+.btn-deletar,
+.btn-sair{
   height: 40px;
   width: 250px;
   padding: 8px;
@@ -81,6 +82,11 @@
   background: rgb(117, 20, 20);
 }
 
+.btn-sair{
+  margin-left: 8px;
+  background: grey;
+  width: 90px;
+}
 
 .seta-mensagem {
   width: 0px;
